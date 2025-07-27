@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGet } from "../hooks/useGet";
 import Spinner from "../ui/Spinner";
 import ProgressBar from "../ui/ProgressBar";
-import { FEEDBACK_LIMIT, FREE_TRIAL_LIMIT, IMAGES_LIMIT } from "../constants/local";
+import { FEEDBACK_LIMIT, FREE_TRIAL_LIMIT, IMAGES_LIMIT, USERS_LIMIT } from "../constants/local";
 
 export default function ShopPreview() {
     const { id } = useParams();
@@ -54,6 +54,7 @@ export default function ShopPreview() {
 
         <ProgressBar progress={feedbaks.length} limit={FEEDBACK_LIMIT} title="Feedbacks" />
         <ProgressBar progress={shop.images_limit} limit={IMAGES_LIMIT} title="Images" />
+        <ProgressBar progress={4} limit={USERS_LIMIT} title="Users" />
         <ProgressBar progress={daysPassed} limit={FREE_TRIAL_LIMIT} title="Free trial" />
     </div>
 }
