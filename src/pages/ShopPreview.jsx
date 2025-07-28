@@ -53,8 +53,8 @@ export default function ShopPreview() {
         <p className="mt-8 text-sm text-gray-400">Language: {shop.language}</p>
 
         <ProgressBar progress={feedbaks.length} limit={FEEDBACK_LIMIT} title="Feedbacks" />
-        <ProgressBar progress={shop.images_limit} limit={IMAGES_LIMIT} title="Images" />
-        <ProgressBar progress={4} limit={USERS_LIMIT} title="Users" />
+        <ProgressBar progress={shop.images} limit={IMAGES_LIMIT} title="Images" />
+        <ProgressBar progress={shop.users} limit={USERS_LIMIT} title="Users" />
         <ProgressBar progress={daysPassed} limit={FREE_TRIAL_LIMIT} title="Free trial" />
     </div>
 }

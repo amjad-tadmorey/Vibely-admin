@@ -41,7 +41,32 @@ export async function handleUserCreation({ email, password, role, shop }) {
             return { success: false, message: updateError.message };
         }
 
-        console.log("User created and profile updated.");
+        // 3. Fetch current users count
+        const { data: shopData, error: fetchError } = await supabase
+            .from("shops")
+            .select("users")
+            .eq("id", shop)
+            .single();
+
+        if (fetchError || !shopData) {
+            console.error("Error fetching current users count:", fetchError?.message);
+            return { success: false, message: "User created, but failed to fetch shop data" };
+        }
+
+        const currentUsers = shopData.users || 0;
+
+        // 4. Increment and update users count
+        const { error: incrementError } = await supabase
+            .from("shops")
+            .update({ users: currentUsers + 1 })
+            .eq("id", shop);
+
+        if (incrementError) {
+            console.error("Error incrementing users count:", incrementError.message);
+            return { success: false, message: "User created, but failed to update shop user count" };
+        }
+
+        console.log("User created, profile updated, and shop users count incremented.");
         return { success: true, user: newUser };
 
     } catch (err) {

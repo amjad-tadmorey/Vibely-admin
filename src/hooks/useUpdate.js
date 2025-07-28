@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { supaUpdate } from '../../lib/supaQuery'
 import toast from 'react-hot-toast'
+import { supaUpdate } from '../lib/supaQuery'
 
 
 export function useUpdate(table, invalidateKey = null) {
