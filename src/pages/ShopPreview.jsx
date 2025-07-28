@@ -26,7 +26,10 @@ export default function ShopPreview() {
             className="w-24 h-24 object-contain mb-4"
         />
         {/* Shop name */}
-        <p className="text-gray-600 text-lg mb-6">{shop.shop_name}</p>
+        <div className="flex items-center flex-col">
+            <p className="text-gray-600 text-2xl mb-2 font-bold">{shop.shop_name}</p>
+            <p className={`${shop.status === 'free' ? "text-green-600" : "text-yellow-500"} text-2xl mb-6 font-bold`}>{shop.status}</p>
+        </div>
 
         {/* Social Links */}
         <div className="flex flex-wrap gap-4 justify-center">
@@ -49,6 +52,6 @@ export default function ShopPreview() {
         <ProgressBar progress={feedbacks.length} limit={FEEDBACK_LIMIT} title="Feedbacks" />
         <ProgressBar progress={shop.images} limit={IMAGES_LIMIT} title="Images" />
         <ProgressBar progress={shop.users} limit={USERS_LIMIT} title="Users" />
-        <ProgressBar progress={daysPassed} limit={FREE_TRIAL_LIMIT} title="Free trial" />
+        {shop.status === 'free' && <ProgressBar progress={daysPassed} limit={FREE_TRIAL_LIMIT} title="Free trial" />}
     </div>
 }
