@@ -10,7 +10,7 @@ export default function ShopPreview() {
     const { data, isPending } = useGet('shops', {
         filters: [{ column: 'id', operator: 'eq', value: id }],
     })
-    const { data: feedbaks, isPending: isPendingFeedbacks } = useGet('feedbacks', {
+    const { data: feedbacks, isPending: isPendingFeedbacks } = useGet('feedbacks', {
         filters: [{ column: 'shop_id', operator: 'eq', value: id }],
     })
 
@@ -25,12 +25,6 @@ export default function ShopPreview() {
             alt={`${shop.shop_name} logo`}
             className="w-24 h-24 object-contain mb-4"
         />
-
-        {/* Title */}
-        <h1 className="text-3xl font-bold mb-2 text-center">
-            {shop.welcome_title}
-        </h1>
-
         {/* Shop name */}
         <p className="text-gray-600 text-lg mb-6">{shop.shop_name}</p>
 
@@ -52,7 +46,7 @@ export default function ShopPreview() {
         {/* Language */}
         <p className="mt-8 text-sm text-gray-400">Language: {shop.language}</p>
 
-        <ProgressBar progress={feedbaks.length} limit={FEEDBACK_LIMIT} title="Feedbacks" />
+        <ProgressBar progress={feedbacks.length} limit={FEEDBACK_LIMIT} title="Feedbacks" />
         <ProgressBar progress={shop.images} limit={IMAGES_LIMIT} title="Images" />
         <ProgressBar progress={shop.users} limit={USERS_LIMIT} title="Users" />
         <ProgressBar progress={daysPassed} limit={FREE_TRIAL_LIMIT} title="Free trial" />
